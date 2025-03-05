@@ -426,7 +426,7 @@
         "us",
         "us-auto",
         "all",
-        "all-auto"
+        "auto"
       ],
       "default": "direct"
     },
