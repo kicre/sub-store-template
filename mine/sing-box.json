@@ -420,7 +420,7 @@
         "all",
         "auto"
       ],
-      "default": "direct"
+      "default": "Proxy"
     },
     {
       "tag": "direct",
@@ -433,6 +433,9 @@
     "rules": [
       {
         "action": "sniff"
+      },
+      {
+        "action": "resolve"
       },
       {
         "type": "logical",
