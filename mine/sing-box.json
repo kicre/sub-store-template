@@ -480,30 +480,40 @@
         "outbound": "Proxy"
       },
       {
-        "ip_cidr": [
-          "127.0.0.1",
-          "192.168.0.0/16",
-          "10.0.0.0/24",
-          "149.104.27.157",
-          "154.91.255.63"
-        ],
-        "domain": [
-          "clash.razord.top",
-          "yacd.metacubex.one",
-          "yacd.haishan.me",
-          "d.metacubex.one",
-          "kicre.top",
-          "wttr.in"
-        ],
-        "domain_suffix": [
-          ".cn",
-          ".kicre.top"
-        ]
-      },
-      {
-        "protocol": [
-          "ssh",
-          "bittorrent"
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "ip_cidr": [
+              "127.0.0.1",
+              "192.168.0.0/16",
+              "10.0.0.0/24",
+              "149.104.27.157",
+              "154.91.255.63"
+            ]
+          },
+          {
+            "domain": [
+              "clash.razord.top",
+              "yacd.metacubex.one",
+              "yacd.haishan.me",
+              "d.metacubex.one",
+              "kicre.top",
+              "wttr.in"
+            ]
+          },
+          {
+            "domain_suffix": [
+              ".cn",
+              ".kicre.top"
+            ]
+          },
+          {
+            "protocol": [
+              "ssh",
+              "bittorrent"
+            ]
+          }
         ],
         "outbound": "direct"
       },
