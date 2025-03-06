@@ -58,15 +58,11 @@
       {
         "clash_mode": "global",
         "action": "route",
-        "server": "ecsDns"
+        "server": "proxyDns"
       },
       {
         "rule_set": "geosite-cn",
         "server": "localDns"
-      },
-      {
-        "rule_set": "geosite-geolocation-!cn",
-        "server": "proxyDns"
       },
       {
         "type": "logical",
@@ -470,12 +466,12 @@
         "outbound": "direct"
       },
       {
-        "clash_mode": "Global",
+        "clash_mode": "global",
         "action": "route",
         "outbound": "GLOBAL"
       },
       {
-        "clash_mode": "Direct",
+        "clash_mode": "direct",
         "action": "route",
         "outbound": "direct"
       },
