@@ -31,7 +31,7 @@
       },
       {
         "tag": "ecsDns",
-        "address": "https://1.1.1.1/dns-query",
+        "address": "tls://8.8.8.8",
         "detour": "Proxy",
         "client_subnet": "202.207.208.6/24"
       }
@@ -433,15 +433,10 @@
     "auto_detect_interface": true,
     "rules": [
       {
-        "action": "sniff",
-        "sniffer": [
-          "http",
-          "tls",
-          "quic",
-          "dns",
-          "ssh",
-          "bittorrent"
-        ]
+        "action": "sniff"
+      },
+      {
+        "action": "resolve"
       },
       {
         "type": "logical",
@@ -503,7 +498,9 @@
         "domain_suffix": [
           ".cn",
           ".kicre.top"
-        ],
+        ]
+      },
+      {
         "protocol": [
           "ssh",
           "bittorrent"
