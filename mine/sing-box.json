@@ -88,7 +88,9 @@
         "172.19.0.0/30",
         "fdfe:dcba:9876::0/126"
       ],
+      "mtu": 9000,
       "auto_route": true,
+      "strict_route": true,
       "platform": {
         "http_proxy": {
           "enabled": true,
@@ -358,7 +360,6 @@
       "tag": "hk-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -366,7 +367,6 @@
       "tag": "tw-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -374,7 +374,6 @@
       "tag": "jp-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -382,7 +381,6 @@
       "tag": "sg-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -390,7 +388,6 @@
       "tag": "us-auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -398,7 +395,6 @@
       "tag": "auto",
       "type": "urltest",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
       "interval": "1m",
       "tolerance": 50
     },
@@ -464,30 +460,11 @@
         "outbound": "direct"
       },
       {
-        "rule_set": [
-          "geosite-category-ads-all",
-          "geosite-awavenue-ads"
-        ],
-        "clash_mode": "direct",
-        "action": "reject"
-      },
-      {
-        "rule_set": [
-          "geosite-category-ads-all",
-          "geosite-awavenue-ads"
-        ],
-        "clash_mode": "global",
-        "outbound": "Proxy"
-      },
-      {
         "type": "logical",
         "mode": "or",
         "rules": [
           {
             "ip_cidr": [
-              "127.0.0.1",
-              "192.168.0.0/16",
-              "10.0.0.0/24",
               "149.104.27.157",
               "154.91.255.63"
             ]
@@ -504,7 +481,6 @@
           },
           {
             "domain_suffix": [
-              ".cn",
               ".kicre.top"
             ]
           },
@@ -515,7 +491,7 @@
             ]
           }
         ],
-        "outbound": "direct"
+        "outbound": "China"
       },
       {
         "rule_set": [
