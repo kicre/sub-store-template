@@ -46,18 +46,15 @@
       },
       {
         "outbound": "any",
-        "action": "route",
         "server": "localDns",
         "disable_cache": true
       },
       {
         "clash_mode": "direct",
-        "action": "route",
         "server": "localDns"
       },
       {
         "clash_mode": "global",
-        "action": "route",
         "server": "proxyDns"
       },
       {
@@ -86,25 +83,25 @@
   "inbounds": [
     {
       "type": "tun",
+      "tag": "tun-in",
       "address": [
         "172.19.0.0/30",
         "fdfe:dcba:9876::0/126"
       ],
-      "stack": "mixed",
       "auto_route": true,
       "platform": {
         "http_proxy": {
           "enabled": true,
           "server": "127.0.0.1",
-          "server_port": 2080
+          "server_port": 7890
         }
       }
     },
     {
       "type": "mixed",
-      "tag": "in",
+      "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 2080
+      "listen_port": 7890
     }
   ],
   "outbounds": [
@@ -444,8 +441,7 @@
           "dns",
           "ssh",
           "bittorrent"
-        ],
-        "timeout": "500ms"
+        ]
       },
       {
         "type": "logical",
@@ -462,17 +458,14 @@
       },
       {
         "ip_is_private": true,
-        "action": "route",
         "outbound": "direct"
       },
       {
         "clash_mode": "global",
-        "action": "route",
         "outbound": "GLOBAL"
       },
       {
         "clash_mode": "direct",
-        "action": "route",
         "outbound": "direct"
       },
       {
@@ -523,9 +516,7 @@
           "geosite-twitter",
           "geosite-geolocation-!cn",
           "geoip-facebook",
-          "geosite-facebook",
-          "geosite-spotify",
-          "geosite-tiktok"
+          "geosite-facebook"
         ],
         "outbound": "Proxy"
       },
@@ -534,13 +525,13 @@
           "geosite-openai",
           "geosite-ehentai"
         ],
-        "outbound": "foreign"
+        "outbound": "Foreign"
       },
       {
         "rule_set": [
           "geosite-pikpak"
         ],
-        "outbound": "pikpak"
+        "outbound": "Pikpak"
       },
       {
         "rule_set": [
@@ -549,14 +540,14 @@
           "geosite-google",
           "geosite-github"
         ],
-        "outbound": "google"
+        "outbound": "Google"
       },
       {
         "rule_set": [
           "geoip-telegram",
           "geosite-telegram"
         ],
-        "outbound": "telegram"
+        "outbound": "Telegram"
       },
       {
         "rule_set": [
@@ -564,13 +555,15 @@
           "geosite-primevideo",
           "geoip-netflix",
           "geosite-netflix",
-          "geosite-disney"
+          "geosite-disney",
+          "geosite-spotify",
+          "geosite-tiktok"
         ],
-        "outbound": "streaming"
+        "outbound": "Streaming"
       },
       {
         "rule_set": "geosite-bilibili",
-        "outbound": "biliBili"
+        "outbound": "BiliBili"
       },
       {
         "rule_set": [
@@ -578,18 +571,18 @@
           "geosite-apple",
           "geosite-amazon"
         ],
-        "outbound": "apple"
+        "outbound": "Apple"
       },
       {
         "rule_set": "geosite-microsoft",
-        "outbound": "microsoft"
+        "outbound": "Microsoft"
       },
       {
         "rule_set": [
           "geosite-category-games",
           "geosite-dmm"
         ],
-        "outbound": "games"
+        "outbound": "Games"
       },
       {
         "rule_set": [
