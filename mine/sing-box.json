@@ -88,7 +88,7 @@
         "172.19.0.0/30",
         "fdfe:dcba:9876::0/126"
       ],
-      "stack": "system",
+      "mtu": 1500,
       "auto_route": true,
       "strict_route": true,
       "platform": {
@@ -130,19 +130,14 @@
       "tag": "Proxy",
       "type": "selector",
       "outbounds": [
-        "hk",
-        "hk-auto",
-        "tw",
-        "tw-auto",
-        "jp",
-        "jp-auto",
-        "sg",
-        "sg-auto",
-        "us",
-        "us-auto",
-        "all",
+        "direct",
         "auto",
-        "direct"
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
       ],
       "default": "auto"
     },
@@ -152,16 +147,13 @@
       "outbounds": [
         "Proxy",
         "direct",
+        "auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "all"
       ],
-      "default": "us-auto"
+      "default": "us"
     },
     {
       "tag": "Pikpak",
@@ -169,14 +161,14 @@
       "outbounds": [
         "Proxy",
         "direct",
+        "auto",
         "jp",
-        "jp-auto",
+        "jp",
         "sg",
-        "sg-auto",
+        "sg",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "us",
+        "all"
       ],
       "default": "direct"
     },
@@ -186,18 +178,13 @@
       "outbounds": [
         "Proxy",
         "direct",
+        "auto",
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "all"
       ],
       "default": "Proxy"
     },
@@ -207,18 +194,13 @@
       "outbounds": [
         "Proxy",
         "direct",
+        "auto",
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "all"
       ],
       "default": "Proxy"
     },
@@ -228,18 +210,13 @@
       "outbounds": [
         "Proxy",
         "direct",
+        "auto",
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "all"
       ],
       "default": "direct"
     },
@@ -249,18 +226,13 @@
       "outbounds": [
         "Proxy",
         "direct",
+        "auto",
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "all"
       ],
       "default": "direct"
     },
@@ -270,18 +242,13 @@
       "outbounds": [
         "Proxy",
         "direct",
+        "auto",
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "all"
       ],
       "default": "direct"
     },
@@ -291,18 +258,13 @@
       "outbounds": [
         "Proxy",
         "direct",
+        "auto",
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "all"
       ],
       "default": "direct"
     },
@@ -312,18 +274,13 @@
       "outbounds": [
         "Proxy",
         "direct",
+        "auto",
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "all"
       ],
       "default": "Proxy"
     },
@@ -333,45 +290,15 @@
       "outbounds": [
         "Proxy",
         "direct",
+        "auto",
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "all"
       ],
       "default": "direct"
-    },
-    {
-      "tag": "hk",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "tw",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "jp",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "sg",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "us",
-      "type": "selector",
-      "outbounds": []
     },
     {
       "tag": "all",
@@ -379,35 +306,35 @@
       "outbounds": []
     },
     {
-      "tag": "hk-auto",
+      "tag": "hk",
       "type": "urltest",
       "outbounds": [],
       "interval": "1m",
       "tolerance": 50
     },
     {
-      "tag": "tw-auto",
+      "tag": "tw",
       "type": "urltest",
       "outbounds": [],
       "interval": "1m",
       "tolerance": 50
     },
     {
-      "tag": "jp-auto",
+      "tag": "jp",
       "type": "urltest",
       "outbounds": [],
       "interval": "1m",
       "tolerance": 50
     },
     {
-      "tag": "sg-auto",
+      "tag": "sg",
       "type": "urltest",
       "outbounds": [],
       "interval": "1m",
       "tolerance": 50
     },
     {
-      "tag": "us-auto",
+      "tag": "us",
       "type": "urltest",
       "outbounds": [],
       "interval": "1m",
@@ -424,20 +351,15 @@
       "tag": "GLOBAL",
       "type": "selector",
       "outbounds": [
-        "direct",
         "Proxy",
+        "direct",
+        "auto",
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "us",
-        "us-auto",
-        "all",
-        "auto"
+        "all"
       ],
       "default": "Proxy"
     },
