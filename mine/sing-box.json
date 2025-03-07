@@ -451,28 +451,19 @@
         "action": "hijack-dns"
       },
       {
-        "rule_set": [
-          "geosite-category-ads-all",
-          "geosite-awavenue-ads"
-        ],
-        "clash_mode": "rule",
-        "action": "reject"
-      },
-      {
-        "rule_set": [
-          "geosite-category-ads-all",
-          "geosite-awavenue-ads"
-        ],
-        "clash_mode": "global",
-        "outbound": "Proxy"
-      },
-      {
         "ip_is_private": true,
         "outbound": "direct"
       },
       {
         "clash_mode": "global",
         "outbound": "GLOBAL"
+      },
+      {
+        "rule_set": [
+          "geosite-category-ads-all",
+          "geosite-awavenue-ads"
+        ],
+        "action": "reject"
       },
       {
         "clash_mode": "direct",
@@ -511,16 +502,6 @@
           }
         ],
         "outbound": "China"
-      },
-      {
-        "rule_set": [
-          "geoip-twitter",
-          "geosite-twitter",
-          "geosite-geolocation-!cn",
-          "geoip-facebook",
-          "geosite-facebook"
-        ],
-        "outbound": "Proxy"
       },
       {
         "rule_set": [
@@ -592,6 +573,16 @@
           "geosite-cn"
         ],
         "outbound": "China"
+      },
+      {
+        "rule_set": [
+          "geoip-twitter",
+          "geosite-twitter",
+          "geosite-geolocation-!cn",
+          "geoip-facebook",
+          "geosite-facebook"
+        ],
+        "outbound": "Proxy"
       }
     ],
     "rule_set": [
