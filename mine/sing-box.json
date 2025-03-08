@@ -21,17 +21,25 @@
     "servers": [
       {
         "tag": "localDns",
-        "address": "https://1.12.12.12/dns-query",
+        "address": "dhcp://auto",
+        "detour": "direct"
+      },
+      {
+        "tag": "romteDns",
+        "address": "tls://dns.alidns.com",
+        "address_resolver": "localDns",
         "detour": "direct"
       },
       {
         "tag": "proxyDns",
-        "address": "https://1.1.1.1/dns-query",
+        "address": "tls://one.one.one.one",
+        "address_resolver": "romteDns",
         "detour": "Proxy"
       },
       {
         "tag": "ecsDns",
-        "address": "tls://8.8.8.8",
+        "address": "tls://dns.google",
+        "address_resolver": "romteDns",
         "detour": "Proxy",
         "client_subnet": "202.207.208.6/24"
       }
@@ -39,7 +47,7 @@
     "rules": [
       {
         "outbound": "any",
-        "server": "localDns",
+        "server": "romteDns",
         "disable_cache": true
       },
       {
