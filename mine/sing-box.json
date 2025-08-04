@@ -25,44 +25,41 @@
         "type": "local"
       },
       {
+        "tag": "112",
+        "type": "https",
+        "server": "1.12.12.12"
+      },
+      {
         "tag": "ali",
         "type": "https",
         "server": "dns.alidns.dns",
-        "domain_resolver": "local"
+        "domain_resolver": "112"
       },
       {
         "tag": "dnspod",
         "type": "https",
         "server": "doh.pub",
-        "domain_resolver": "local"
+        "domain_resolver": "112"
       },
       {
         "tag": "cloudflare",
         "type": "https",
         "server": "cloudflare-dns.com",
-        "domain_resolver": "dnspod",
+        "domain_resolver": "112",
         "detour": "Proxy"
       },
       {
         "tag": "google",
         "type": "https",
         "server": "dns.google",
-        "domain_resolver": "dnspod",
+        "domain_resolver": "112",
         "detour": "Proxy"
-      },
-      {
-        "type": "hosts",
-        "tag": "hosts"
       }
     ],
     "rules": [
       {
         "clash_mode": "global",
         "server": "cloudflare"
-      },
-      {
-        "ip_accept_any": true,
-        "server": "hosts"
       },
       {
         "clash_mode": "direct",
@@ -77,11 +74,16 @@
       },
       {
         "rule_set": [
-          "geosite-zhihu",
-          "geosite-bytedance@cn",
           "geosite-category-games@cn"
         ],
         "server": "local"
+      },
+      {
+        "rule_set": [
+          "geosite-zhihu",
+          "geosite-bytedance@cn"
+        ],
+        "server": "ali"
       },
       {
         "rule_set": [
@@ -91,24 +93,15 @@
         "server": "ali"
       },
       {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-geolocation-!cn",
-            "invert": true
-          },
-          {
-            "rule_set": "geoip-cn"
-          }
-        ],
-        "server": "google",
-        "client_subnet": "202.207.208.6/24"
+        "rule_set": "geosite-geolocation-!cn",
+        "server": "cloudflare"
       }
     ],
-    "final": "ali",
+    "final": "google",
     "strategy": "prefer_ipv6",
-    "independent_cache": true
+    "disable_cache": false,
+    "independent_cache": false,
+    "client_subnet": "202.207.208.6/24"
   },
   "inbounds": [
     {
@@ -400,9 +393,8 @@
     "final": "Proxy",
     "auto_detect_interface": true,
     "default_domain_resolver": {
-      "server": "local",
-      "rewrite_ttl": 60,
-      "client_subnet": "202.207.208.6/24"
+      "server": "dnspod",
+      "rewrite_ttl": 60
     },
     "rules": [
       {
@@ -441,36 +433,20 @@
         "outbound": "direct"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "ip_cidr": [
-              "149.104.27.157",
-              "154.91.255.63"
-            ]
-          },
-          {
-            "domain_suffix": [
-              "clash.razord.top",
-              "yacd.metacubex.one",
-              "yacd.haishan.me",
-              "d.metacubex.one",
-              "kicre.top",
-              "wttr.in"
-            ]
-          },
-          {
-            "protocol": [
-              "ssh",
-              "bittorrent"
-            ]
-          }
+        "domain_suffix": [
+          "clash.razord.top",
+          "yacd.metacubex.one",
+          "yacd.haishan.me",
+          "d.metacubex.one",
+          "kicre.top",
+          "wttr.in"
         ],
         "outbound": "China"
       },
       {
         "rule_set": [
+          "geosite-private",
+          "geosite-cn",
           "geosite-zhihu",
           "geosite-bytedance@cn",
           "geosite-category-games@cn"
@@ -480,15 +456,6 @@
       {
         "rule_set": "geosite-bilibili",
         "outbound": "BiliBili"
-      },
-      {
-        "rule_set": [
-          "geoip-cn",
-          "geosite-cn",
-          "geoip-private",
-          "geosite-private"
-        ],
-        "outbound": "China"
       },
       {
         "rule_set": [
@@ -502,6 +469,28 @@
           "geosite-pikpak"
         ],
         "outbound": "Pikpak"
+      },
+      {
+        "rule_set": "geosite-microsoft",
+        "outbound": "Microsoft"
+      },
+      {
+        "rule_set": [
+          "geosite-category-games",
+          "geosite-dmm"
+        ],
+        "outbound": "Games"
+      },
+      {
+        "ip_cidr": [
+          "149.104.27.157",
+          "154.91.255.63"
+        ],
+        "outbound": "China"
+      },
+      {
+        "rule_set": "geoip-cn",
+        "outbound": "China"
       },
       {
         "rule_set": [
@@ -538,17 +527,6 @@
           "geosite-amazon"
         ],
         "outbound": "Apple"
-      },
-      {
-        "rule_set": "geosite-microsoft",
-        "outbound": "Microsoft"
-      },
-      {
-        "rule_set": [
-          "geosite-category-games",
-          "geosite-dmm"
-        ],
-        "outbound": "Games"
       },
       {
         "rule_set": [
