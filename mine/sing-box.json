@@ -63,7 +63,7 @@
       },
       {
         "clash_mode": "direct",
-        "server": "ali"
+        "server": "local"
       },
       {
         "rule_set": [
