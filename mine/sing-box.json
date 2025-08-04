@@ -14,45 +14,67 @@
     },
     "cache_file": {
       "enabled": true,
-      "store_fakeip": false
+      "store_fakeip": false,
+      "store_rdrc": true
     }
   },
   "dns": {
     "servers": [
       {
-        "tag": "localDns",
-        "address": "local",
+        "tag": "local",
+        "type": "local",
         "detour": "direct"
       },
       {
-        "tag": "remoteDns",
-        "address": "https://dns.alidns.dns/dns-query",
-        "address_resolver": "localDns",
+        "tag": "ali",
+        "type": "https",
+        "server": "dns.alidns.dns/dns-query",
+        "domain_resolver": "local",
         "detour": "direct"
       },
       {
-        "tag": "proxyDns",
-        "address": "https://cloudflare-dns.com/dns-query",
-        "address_resolver": "remoteDns",
+        "tag": "dnspod",
+        "type": "https",
+        "server": "doh.pub/dns-query",
+        "domain_resolver": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "cloudflare",
+        "type": "https",
+        "server": "cloudflare-dns.com/dns-query",
+        "domain_resolver": "dnspod",
         "detour": "Proxy"
       },
       {
-        "tag": "ecsDns",
-        "address": "https://dns.google/dns-query",
-        "address_resolver": "remoteDns",
-        "detour": "Proxy",
-        "client_subnet": "202.207.208.6/24"
+        "tag": "google",
+        "type": "https",
+        "server": "dns.google/dns-query",
+        "domain_resolver": "dnspod",
+        "detour": "Proxy"
+      },
+      {
+        "type": "hosts",
+        "tag": "hosts"
       }
     ],
     "rules": [
       {
         "outbound": "any",
-        "server": "remoteDns",
+        "server": "dnspod",
         "disable_cache": true
       },
       {
         "clash_mode": "global",
-        "server": "proxyDns"
+        "server": "cloudflare"
+      },
+      {
+        "ip_accept_any": true,
+        "server": "hosts"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "ali"
       },
       {
         "rule_set": [
@@ -62,22 +84,29 @@
         "action": "reject"
       },
       {
-        "clash_mode": "direct",
-        "server": "localDns"
-      },
-      {
         "rule_set": [
           "geosite-cn",
           "geosite-private"
         ],
-        "server": "localDns"
+        "server": "ali"
       },
       {
-        "rule_set": "geosite-geolocation-!cn",
-        "server": "proxyDns"
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-geolocation-!cn",
+            "invert": true
+          },
+          {
+            "rule_set": "geoip-cn"
+          }
+        ],
+        "server": "google",
+        "client_subnet": "202.207.208.6/24"
       }
     ],
-    "final": "ecsDns",
+    "final": "ali",
     "strategy": "prefer_ipv6",
     "independent_cache": true
   },
