@@ -22,34 +22,31 @@
     "servers": [
       {
         "tag": "local",
-        "type": "local",
-        "detour": "direct"
+        "type": "local"
       },
       {
         "tag": "ali",
         "type": "https",
-        "server": "dns.alidns.dns/dns-query",
-        "domain_resolver": "local",
-        "detour": "direct"
+        "server": "dns.alidns.dns",
+        "domain_resolver": "local"
       },
       {
         "tag": "dnspod",
         "type": "https",
-        "server": "doh.pub/dns-query",
-        "domain_resolver": "local",
-        "detour": "direct"
+        "server": "doh.pub",
+        "domain_resolver": "local"
       },
       {
         "tag": "cloudflare",
         "type": "https",
-        "server": "cloudflare-dns.com/dns-query",
+        "server": "cloudflare-dns.com",
         "domain_resolver": "dnspod",
         "detour": "Proxy"
       },
       {
         "tag": "google",
         "type": "https",
-        "server": "dns.google/dns-query",
+        "server": "dns.google",
         "domain_resolver": "dnspod",
         "detour": "Proxy"
       },
@@ -59,11 +56,6 @@
       }
     ],
     "rules": [
-      {
-        "outbound": "any",
-        "server": "dnspod",
-        "disable_cache": true
-      },
       {
         "clash_mode": "global",
         "server": "cloudflare"
@@ -82,6 +74,14 @@
           "geosite-awavenue-ads"
         ],
         "action": "reject"
+      },
+      {
+        "rule_set": [
+          "geosite-zhihu",
+          "geosite-bytedance@cn",
+          "geosite-category-games@cn"
+        ],
+        "server": "local"
       },
       {
         "rule_set": [
@@ -399,6 +399,11 @@
   "route": {
     "final": "Proxy",
     "auto_detect_interface": true,
+    "default_domain_resolver": {
+      "server": "local",
+      "rewrite_ttl": 60,
+      "client_subnet": "202.207.208.6/24"
+    },
     "rules": [
       {
         "action": "sniff"
@@ -461,6 +466,14 @@
               "bittorrent"
             ]
           }
+        ],
+        "outbound": "China"
+      },
+      {
+        "rule_set": [
+          "geosite-zhihu",
+          "geosite-bytedance@cn",
+          "geosite-category-games@cn"
         ],
         "outbound": "China"
       },
@@ -785,6 +798,27 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs",
+        "download_detour": "auto"
+      },
+      {
+        "tag": "geosite-zhihu",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/zhihu.srs",
+        "download_detour": "auto"
+      },
+      {
+        "tag": "geosite-bytedance@cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/bytedance@cn.srs",
+        "download_detour": "auto"
+      },
+      {
+        "tag": "geosite-category-games@cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-games@cn.srs",
         "download_detour": "auto"
       }
     ]
