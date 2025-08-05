@@ -25,6 +25,11 @@
         "type": "local"
       },
       {
+        "tag": "voic",
+        "type": "udp",
+        "server": "180.184.1.1"
+      },
+      {
         "tag": "112",
         "type": "https",
         "server": "1.12.12.12"
@@ -83,7 +88,7 @@
           "geosite-zhihu",
           "geosite-bytedance@cn"
         ],
-        "server": "ali"
+        "server": "voic"
       },
       {
         "rule_set": [
