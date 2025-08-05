@@ -49,15 +49,13 @@
       {
         "tag": "cloudflare",
         "type": "https",
-        "server": "cloudflare-dns.com",
-        "domain_resolver": "112",
+        "server": "1.1.1.1",
         "detour": "Proxy"
       },
       {
         "tag": "google",
         "type": "https",
-        "server": "dns.google",
-        "domain_resolver": "112",
+        "server": "8.8.8.8",
         "detour": "Proxy"
       }
     ],
