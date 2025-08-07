@@ -474,6 +474,14 @@
         "outbound": "Pikpak"
       },
       {
+        "rule_set": [
+          "geosite-youtube",
+          "geosite-google",
+          "geosite-github"
+        ],
+        "outbound": "Google"
+      },
+      {
         "rule_set": "geosite-microsoft",
         "outbound": "Microsoft"
       },
@@ -497,10 +505,7 @@
       },
       {
         "rule_set": [
-          "geosite-youtube",
-          "geoip-google",
-          "geosite-google",
-          "geosite-github"
+          "geoip-google"
         ],
         "outbound": "Google"
       },
