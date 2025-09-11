@@ -70,8 +70,7 @@
       },
       {
         "rule_set": [
-          "geosite-category-ads-all",
-          "geosite-awavenue-ads"
+          "geosite-category-ads-all"
         ],
         "action": "reject"
       },
@@ -426,8 +425,7 @@
       },
       {
         "rule_set": [
-          "geosite-category-ads-all",
-          "geosite-awavenue-ads"
+          "geosite-category-ads-all"
         ],
         "action": "reject"
       },
@@ -553,13 +551,6 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ads-all.srs",
-        "download_detour": "auto"
-      },
-      {
-        "tag": "geosite-awavenue-ads",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Singbox.json",
         "download_detour": "auto"
       },
       {
