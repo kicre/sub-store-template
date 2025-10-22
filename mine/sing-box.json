@@ -22,34 +22,29 @@
     "servers": [
       {
         "tag": "local",
-        "type": "local",
-        "detour": "direct"
+        "type": "local"
       },
       {
         "tag": "voic",
         "type": "udp",
-        "server": "180.184.1.1",
-        "detour": "direct"
+        "server": "180.184.1.1"
       },
       {
         "tag": "112",
         "type": "https",
-        "server": "1.12.12.12",
-        "detour": "direct"
+        "server": "1.12.12.12"
       },
       {
         "tag": "ali",
         "type": "https",
         "server": "dns.alidns.dns",
-        "domain_resolver": "112",
-        "detour": "direct"
+        "domain_resolver": "112"
       },
       {
         "tag": "dnspod",
         "type": "https",
         "server": "doh.pub",
-        "domain_resolver": "112",
-        "detour": "direct"
+        "domain_resolver": "112"
       },
       {
         "tag": "cloudflare",
