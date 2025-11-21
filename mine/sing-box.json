@@ -21,39 +21,23 @@
   "dns": {
     "servers": [
       {
-        "tag": "local",
-        "type": "local"
-      },
-      {
-        "tag": "voic",
+        "tag": "localDns",
         "type": "udp",
         "server": "180.184.1.1"
       },
       {
-        "tag": "112",
+        "tag": "remoteDns",
         "type": "https",
         "server": "1.12.12.12"
       },
       {
-        "tag": "ali",
-        "type": "https",
-        "server": "dns.alidns.dns",
-        "domain_resolver": "112"
-      },
-      {
-        "tag": "dnspod",
-        "type": "https",
-        "server": "doh.pub",
-        "domain_resolver": "112"
-      },
-      {
-        "tag": "cloudflare",
+        "tag": "globalDns",
         "type": "https",
         "server": "1.1.1.1",
-        "detour": "Proxy"
+        "detour": "GLOBAL"
       },
       {
-        "tag": "google",
+        "tag": "proxyDns",
         "type": "https",
         "server": "8.8.8.8",
         "detour": "Proxy"
@@ -61,12 +45,19 @@
     ],
     "rules": [
       {
+        "domain_suffix": [
+          ".kicre.wang"
+        ],
+        "server": "localDns",
+        "strategy": "ipv6_only"
+      },
+      {
         "clash_mode": "global",
-        "server": "cloudflare"
+        "server": "globalDns"
       },
       {
         "clash_mode": "direct",
-        "server": "local"
+        "server": "localDns"
       },
       {
         "rule_set": [
@@ -78,14 +69,14 @@
         "rule_set": [
           "geosite-category-games@cn"
         ],
-        "server": "local"
+        "server": "localDns"
       },
       {
         "rule_set": [
           "geosite-cn",
           "geosite-private"
         ],
-        "server": "ali"
+        "server": "localDns"
       },
       {
         "type": "logical",
@@ -99,22 +90,20 @@
             "rule_set": "geoip-cn"
           }
         ],
-        "server": "google",
+        "server": "proxyDns",
         "client_subnet": "202.207.208.6/24"
       }
     ],
-    "final": "google",
-    "strategy": "prefer_ipv6",
-    "disable_cache": false,
-    "independent_cache": false
+    "final": "proxyDns",
+    "strategy": "prefer_ipv6"
   },
   "inbounds": [
     {
       "tag": "tun-in",
       "type": "tun",
       "address": [
-        "172.19.0.0/30",
-        "fdfe:dcba:9876::0/126"
+        "fdfe:dcba:9876::0/126",
+        "172.19.0.0/30"
       ],
       "auto_route": true,
       "strict_route": true,
@@ -142,6 +131,9 @@
         "ff03::/16",
         "ff04::/16",
         "ff05::/16"
+      ],
+      "route_exclude_address_set": [
+        "geoip-cn"
       ]
     },
     {
@@ -151,254 +143,11 @@
       "listen_port": 7890
     }
   ],
-  "outbounds": [
-    {
-      "tag": "Proxy",
-      "type": "selector",
-      "outbounds": [
-        "auto",
-        "direct",
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "auto"
-    },
-    {
-      "tag": "Foreign",
-      "type": "selector",
-      "outbounds": [
-        "Proxy",
-        "direct",
-        "auto",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "us"
-    },
-    {
-      "tag": "Pikpak",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "Proxy",
-        "auto",
-        "jp",
-        "jp",
-        "sg",
-        "sg",
-        "us",
-        "us",
-        "all"
-      ],
-      "default": "direct"
-    },
-    {
-      "tag": "Google",
-      "type": "selector",
-      "outbounds": [
-        "Proxy",
-        "direct",
-        "auto",
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "Proxy"
-    },
-    {
-      "tag": "Telegram",
-      "type": "selector",
-      "outbounds": [
-        "Proxy",
-        "direct",
-        "auto",
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "Proxy"
-    },
-    {
-      "tag": "Games",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "Proxy",
-        "auto",
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "direct"
-    },
-    {
-      "tag": "Apple",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "Proxy",
-        "auto",
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "direct"
-    },
-    {
-      "tag": "Microsoft",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "Proxy",
-        "auto",
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "direct"
-    },
-    {
-      "tag": "BiliBili",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "Proxy",
-        "auto",
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "direct"
-    },
-    {
-      "tag": "Streaming",
-      "type": "selector",
-      "outbounds": [
-        "Proxy",
-        "direct",
-        "auto",
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "Proxy"
-    },
-    {
-      "tag": "China",
-      "type": "selector",
-      "outbounds": [
-        "direct",
-        "Proxy",
-        "auto",
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "direct"
-    },
-    {
-      "tag": "all",
-      "type": "selector",
-      "outbounds": []
-    },
-    {
-      "tag": "hk",
-      "type": "urltest",
-      "outbounds": [],
-      "interval": "1m",
-      "tolerance": 50
-    },
-    {
-      "tag": "tw",
-      "type": "urltest",
-      "outbounds": [],
-      "interval": "1m",
-      "tolerance": 50
-    },
-    {
-      "tag": "jp",
-      "type": "urltest",
-      "outbounds": [],
-      "interval": "1m",
-      "tolerance": 50
-    },
-    {
-      "tag": "sg",
-      "type": "urltest",
-      "outbounds": [],
-      "interval": "1m",
-      "tolerance": 50
-    },
-    {
-      "tag": "us",
-      "type": "urltest",
-      "outbounds": [],
-      "interval": "1m",
-      "tolerance": 50
-    },
-    {
-      "tag": "auto",
-      "type": "urltest",
-      "outbounds": [],
-      "interval": "1m",
-      "tolerance": 50
-    },
-    {
-      "tag": "GLOBAL",
-      "type": "selector",
-      "outbounds": [
-        "Proxy",
-        "direct",
-        "auto",
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "us",
-        "all"
-      ],
-      "default": "Proxy"
-    },
-    {
-      "tag": "direct",
-      "type": "direct"
-    }
-  ],
   "route": {
     "final": "Proxy",
     "auto_detect_interface": true,
     "default_domain_resolver": {
-      "server": "dnspod",
+      "server": "remoteDns",
       "rewrite_ttl": 60
     },
     "rules": [
@@ -423,23 +172,6 @@
         "outbound": "direct"
       },
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "port": 853
-          },
-          {
-            "network": "udp",
-            "port": 443
-          },
-          {
-            "protocol": "stun"
-          }
-        ],
-        "action": "reject"
-      },
-      {
         "clash_mode": "global",
         "outbound": "GLOBAL"
       },
@@ -461,7 +193,10 @@
           "d.metacubex.one",
           "kicre.top",
           "wttr.in",
-          "zaimanhua.com"
+          "zaimanhua.com",
+          "folo.is",
+          "follow.is",
+          "saduck.top"
         ],
         "outbound": "China"
       },
@@ -804,5 +539,248 @@
         "download_detour": "auto"
       }
     ]
-  }
+  },
+  "outbounds": [
+    {
+      "tag": "Proxy",
+      "type": "selector",
+      "outbounds": [
+        "auto",
+        "direct",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "hk"
+    },
+    {
+      "tag": "Foreign",
+      "type": "selector",
+      "outbounds": [
+        "Proxy",
+        "direct",
+        "auto",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "us"
+    },
+    {
+      "tag": "Pikpak",
+      "type": "selector",
+      "outbounds": [
+        "direct",
+        "Proxy",
+        "auto",
+        "jp",
+        "jp",
+        "sg",
+        "sg",
+        "us",
+        "us",
+        "all"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "Google",
+      "type": "selector",
+      "outbounds": [
+        "Proxy",
+        "direct",
+        "auto",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "tag": "Telegram",
+      "type": "selector",
+      "outbounds": [
+        "Proxy",
+        "direct",
+        "auto",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "tag": "Games",
+      "type": "selector",
+      "outbounds": [
+        "direct",
+        "Proxy",
+        "auto",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "Apple",
+      "type": "selector",
+      "outbounds": [
+        "direct",
+        "Proxy",
+        "auto",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "Microsoft",
+      "type": "selector",
+      "outbounds": [
+        "direct",
+        "Proxy",
+        "auto",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "BiliBili",
+      "type": "selector",
+      "outbounds": [
+        "direct",
+        "Proxy",
+        "auto",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "Streaming",
+      "type": "selector",
+      "outbounds": [
+        "Proxy",
+        "direct",
+        "auto",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "tag": "China",
+      "type": "selector",
+      "outbounds": [
+        "direct",
+        "Proxy",
+        "auto",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "all",
+      "type": "selector",
+      "outbounds": []
+    },
+    {
+      "tag": "hk",
+      "type": "urltest",
+      "outbounds": [],
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "tw",
+      "type": "urltest",
+      "outbounds": [],
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "jp",
+      "type": "urltest",
+      "outbounds": [],
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "sg",
+      "type": "urltest",
+      "outbounds": [],
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "us",
+      "type": "urltest",
+      "outbounds": [],
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "auto",
+      "type": "urltest",
+      "outbounds": [],
+      "interval": "1m",
+      "tolerance": 50
+    },
+    {
+      "tag": "GLOBAL",
+      "type": "selector",
+      "outbounds": [
+        "Proxy",
+        "direct",
+        "auto",
+        "hk",
+        "tw",
+        "jp",
+        "sg",
+        "us",
+        "all"
+      ],
+      "default": "Proxy"
+    },
+    {
+      "tag": "direct",
+      "type": "direct"
+    }
+  ]
 }
