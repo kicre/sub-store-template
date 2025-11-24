@@ -99,6 +99,7 @@
         "fdfe:dcba:9876::0/126",
         "172.19.0.0/30"
       ],
+      "stack": "gvisor",
       "auto_route": true,
       "strict_route": true,
       "platform": {
