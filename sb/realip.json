@@ -46,13 +46,11 @@
     "rules": [
       {
         "clash_mode": "global",
-        "server": "globalDns",
-        "strategy": "ipv4_only"
+        "server": "globalDns"
       },
       {
         "clash_mode": "direct",
-        "server": "localDns",
-        "strategy": "prefer_ipv6"
+        "server": "localDns"
       },
       {
         "rule_set": [
@@ -65,16 +63,14 @@
         "rule_set": [
           "geosite-category-games@cn"
         ],
-        "server": "localDns",
-        "strategy": "prefer_ipv6"
+        "server": "localDns"
       },
       {
         "rule_set": [
           "geosite-cn",
           "geosite-private"
         ],
-        "server": "localDns",
-        "strategy": "prefer_ipv6"
+        "server": "localDns"
       },
       {
         "type": "logical",
@@ -93,7 +89,7 @@
       }
     ],
     "final": "proxyDns",
-    "strategy": "ipv4_only"
+    "strategy": "prefer_ipv6"
   },
   "inbounds": [
     {
@@ -129,6 +125,22 @@
       "rewrite_ttl": 60
     },
     "rules": [
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "ip_version": 6
+          },
+          {
+            "default_interface_address": [
+              "2000::/3"
+            ],
+            "invert": true
+          }
+        ],
+        "action": "reject"
+      },
       {
         "action": "sniff"
       },
