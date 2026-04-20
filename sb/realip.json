@@ -58,7 +58,7 @@
       },
       {
         "tag": "localDns",
-        "type": "udp",
+        "type": "https",
         "server": "dns.alidns.com",
         "domain_resolver": "hosts"
       },
