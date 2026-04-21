@@ -104,15 +104,15 @@
         "action": "reject"
       },
       {
-        "rule_set": [
-          "geosite-category-games@cn"
-        ],
+        "rule_set": [],
         "server": "localDns"
       },
       {
         "rule_set": [
+          "my-cn",
           "geosite-cn",
-          "geosite-private"
+          "geosite-private",
+          "geosite-category-games@cn"
         ],
         "server": "localDns"
       },
@@ -220,24 +220,8 @@
         "outbound": "direct"
       },
       {
-        "domain_suffix": [
-          "clash.razord.top",
-          "yacd.metacubex.one",
-          "yacd.haishan.me",
-          "d.metacubex.one",
-          "kicre.top",
-          "wttr.in",
-          "zaimanhua.com",
-          "folo.is",
-          "follow.is",
-          "saduck.top",
-          "emby.qtecrab.com",
-          "emby.289278.xyz"
-        ],
-        "outbound": "China"
-      },
-      {
         "rule_set": [
+          "my-cn",
           "geosite-private",
           "geosite-cn",
           "geosite-category-games@cn"
@@ -336,6 +320,13 @@
       }
     ],
     "rule_set": [
+      {
+        "tag": "my-cn",
+        "type": "remote",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/kicre/sing-rule/main/cn.json",
+        "download_detour": "auto"
+      },
       {
         "tag": "geosite-category-ads-all",
         "type": "remote",
