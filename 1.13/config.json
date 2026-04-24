@@ -104,10 +104,6 @@
         "action": "reject"
       },
       {
-        "rule_set": [],
-        "server": "localDns"
-      },
-      {
         "rule_set": [
           "my-cn",
           "geosite-cn",
@@ -133,6 +129,7 @@
       }
     ],
     "final": "proxyDns",
+    "reverse_mapping": true,
     "strategy": "prefer_ipv6"
   },
   "inbounds": [
@@ -163,6 +160,7 @@
   "route": {
     "final": "Proxy",
     "auto_detect_interface": true,
+    "find_process": true,
     "default_domain_resolver": {
       "server": "remoteDns",
       "rewrite_ttl": 60
@@ -325,252 +323,288 @@
         "type": "remote",
         "format": "source",
         "url": "https://raw.githubusercontent.com/kicre/sing-rule/main/cn.json",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-category-ads-all",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ads-all.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "AWAvenue-Ads-Rule",
         "type": "remote",
         "format": "source",
         "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Singbox.json",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-openai",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/Toperlock/sing-box-geosite/main/rule/OpenAI.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-youtube",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geoip-google",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-google",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-github",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geoip-telegram",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-telegram",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geoip-twitter",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/twitter.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-twitter",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/twitter.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geoip-facebook",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/facebook.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-facebook",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/facebook.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-bilibili",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/bilibili.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-spotify",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/spotify.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-tiktok",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tiktok.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geoip-netflix",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-netflix",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/netflix.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-disney",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/disney.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geoip-apple",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/apple.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-apple",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-amazon",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/amazon.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-microsoft",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-category-games",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-games.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-dmm",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/dmm.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-hbo",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/hbo.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-primevideo",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/primevideo.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-geolocation-!cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-pikpak",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/pikpak.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-ehentai",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/ehentai.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-private",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geoip-private",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       },
       {
         "tag": "geosite-category-games@cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-games@cn.srs",
-        "download_detour": "auto"
+        "download_detour": "auto",
+        "update_interval": "12h"
       }
     ]
   },
@@ -612,10 +646,7 @@
         "Proxy",
         "auto",
         "jp",
-        "jp",
         "sg",
-        "sg",
-        "us",
         "us",
         "all"
       ],
