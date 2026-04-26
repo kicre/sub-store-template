@@ -263,13 +263,6 @@
         "outbound": "Games"
       },
       {
-        "ip_cidr": [
-          "149.104.27.157",
-          "154.91.255.63"
-        ],
-        "outbound": "China"
-      },
-      {
         "rule_set": "geoip-cn",
         "outbound": "China"
       },
